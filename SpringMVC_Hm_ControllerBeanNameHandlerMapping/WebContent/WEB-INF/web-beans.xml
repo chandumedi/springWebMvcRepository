@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+	we can send like this not like below bcz when ever we want to use this we can not refer to it-->
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerBeanNameHandlerMapping">
+	<property name="urlPrefix" value="/"></property>
+	<property name="urlSuffix" value=".htm"></property>
+	</bean> 
+	<!-- id="/home.htm" this is also possible but not recomended -->
+	<bean id="home" class="com.controllerbeanname.mapping.controller.ViewHomeController">
+	</bean>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/jsps/"></property>
+	<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>
