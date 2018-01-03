@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!-- Controller configurations -->	
+<bean id="viewBookTicketController" class="com.handlerinterceptor.controller.ViewBookTicketController"></bean>
+
+<!-- Bean Name Url Handler Mapping -->
+<bean name="/display-tickets.action" class="com.handlerinterceptor.controller.ViewDisplayTicketController"></bean>
+
+<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+<!-- HandlerMappings(SimpleurlHandlerMapping) -->
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<property name="mappings">
+  <props>
+     <prop key="/book-tickets.action">viewBookTicketController</prop>
+  </props>
+</property>
+ <property name="interceptors">
+  <list>
+   <ref bean="timeZoneInterceptors"/>   
+  </list>
+ </property>
+</bean>
+
+
+<!-- HandlerInterceptor -->
+<bean id="timeZoneInterceptors" class="com.handlerinterceptor.handlerinterceptor.TimeZoneInterceptor"></bean>
+
+<!-- View Resolver -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <property name="prefix" value="/WEB-INF/jsps/"></property>
+  <property name="suffix" value=".jsp"></property>
+</bean>
+</beans>
