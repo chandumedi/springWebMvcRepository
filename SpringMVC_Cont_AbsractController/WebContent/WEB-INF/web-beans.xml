@@ -8,7 +8,7 @@
        <property name="mappings">
           <props>
               <prop key="account.htm">viewAccountParameteriziedController</prop>
-              <prop key="recharge-history.htm">rechargeHistoryCommandController</prop>
+              <prop key="recharge-history.htm">rechargeHistoryController</prop>
           </props>
        </property>
     </bean>
@@ -19,7 +19,7 @@
   </bean>
   
   <!-- Configuring AbstractCommanController   -->
-  <bean id="rechargeHistoryCommandController"  class="com.recharge.history.controller.RechargeHistoryCommandController">
+  <bean id="rechargeHistoryController"  class="com.recharge.history.controller.RechargeHistoryController">
      <property name="manageOrderService"  ref="manageOrderService"></property>
   </bean>
   <!-- View Resolver Configuration  -->

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import com.recharge.history.dto.RechargeHistoryDTO;
 import com.recharge.history.service.ManageOrderService;
 
-public class RechargeHistoryCommandController  extends AbstractController {
+public class RechargeHistoryController  extends AbstractController {
    private ManageOrderService manageOrderService;
 	public ManageOrderService getManageOrderService() {
 	return manageOrderService;
@@ -22,7 +22,7 @@ public void setManageOrderService(ManageOrderService manageOrderService) {
 	this.manageOrderService = manageOrderService;
 }
 
-	public RechargeHistoryCommandController() {
+	public RechargeHistoryController() {
 	System.out.println("inside the RechargeHistoryCommanController class constructor");
   }
 
