@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+     <props>
+         <prop key="/search-products.mvc">viewProductsSearchController</prop>
+         <prop key="/do-search-products.mvc">viewProductResultCommandController</prop>
+     </props>
+  </property>
+</bean>
+
+<bean id="viewProductsSearchController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+   <property name="viewName" value="search-products"></property>
+</bean>
+<bean id="viewProductResultCommandController" class="com.abstractcommand.controller.ProductCommandController">
+ <property name="commandClass" value="com.abstractcommand.command.ProductCommand"></property>
+</bean>
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <property name="prefix" value="WEB-INF/jsp/"></property>
+   <property name="suffix" value=".jsp"></property>
+</bean>
+</beans>
