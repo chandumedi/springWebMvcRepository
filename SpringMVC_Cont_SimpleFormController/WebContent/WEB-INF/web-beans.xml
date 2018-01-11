@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+   <property name="mappings">
+      <props>
+         <prop key="/addproducts.action">addProductsSimpleFormController</prop>
+      </props>
+   </property>
+</bean>
+
+<!-- Controller configurations -->
+<bean id="addProductsSimpleFormController" class="com.simpleform.controller.AddProductsSimpleFormController">
+  <property name="validator" ref="productCommandValidator"></property>
+  <property name="commandClass" value="com.simpleform.command.ProductCommand"></property>
+</bean>
+
+<!-- ViewResolver configurations -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <property name="prefix" value="/WEB-INF/jsp/"></property>
+   <property name="suffix" value=".jsp"></property>
+</bean>
+
+<!-- Configuring ResourceBundles for error properties -->
+<bean id="resourceBundle" class="org.springframework.context.support.ResourceBundleMessageSource">
+  <property name="basename" value="error"></property>
+</bean>
+
+<!--Configuring Validators  -->
+<bean id="productCommandValidator" class="com.simpleform.validator.ProductCommandValidator">
+</bean>
+</beans>
