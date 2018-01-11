@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Configuring HandlerMappings -->	
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <property name="mappings">
+     <props>
+         <prop key="/about-us.action">viewPdfController</prop>
+     </props>
+  </property>
+</bean>
+
+<!-- Configuring Controllers -->
+<bean id="viewAboutUsController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+  <property name="viewName" value="about-us"></property>
+</bean>
+
+<bean id="viewPdfController" class="com.viewresolvers.controller.ViewCourcePdfController"></bean>
+
+
+
+<!-- Configuring Views   -->
+<bean id="pdfView" class="com.viewresolvers.views.RenderPdfView">
+</bean>
+<bean id="excelView" class="com.viewresolvers.views.RenderExcelView"></bean>
+
+
+<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
+<!-- Configuring Different View Resolvers
+
+1)Internal ResourceViewResolver 
+ <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  <property name="prefix" value="/WEB-INF/jsp/"></property>
+  <property name="suffix" value=".jsp"></property>
+</bean> 
+
+2)BeanNameViewResolver and we nedd to configure one View that is Jstl bcz it will not take any view as default
+<bean  class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+<bean id="au" class="org.springframework.web.servlet.view.JstlView">
+  <property name="url" value="/WEB-INF/jsp/about-us.jsp"></property>
+</bean>  
+
+3)XmlViewResolver Same as second but we have to provide those configurations in
+some other file and we need to give that location inside of it
+<bean class="org.springframework.web.servlet.view.XmlViewResolver">
+  <property name="location" value="/WEB-INF/viewsConfig/view-beans.xml"></property>
+</bean>
+
+4)ResourceBundleViewResolver This willread the values from properties file and renders the page
+<bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+  <property name="basename" value="views"></property>
+</bean>
+
+5)UrlBasedViewResolver This is same as first one but here we need to provide the view name bcz this class wont take any class as default class
+<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+ <property name="prefix" value="/WEB-INF/jsp/"></property>
+ <property name="suffix" value=".jsp"></property>
+ <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+ 
+ ## One condition is that we can configure multiple ViewResolvers but always it is better to configure InternalResourceViewResolver bcz 
+ either of ViewReolvers you may have one BeanName ViewResolver.here logical name and file name should not be same.as the dispatcher servlet
+ will come one after another resolver.when it comes to Internal ViewResolver it will take that logical viewname but this logical name 
+ is understand by BeanNameViewResolver so it will not display that page and controller unable to go after this
+</bean>-->
+</beans>
