@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- Handler Mapping Configuration -->
+<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+ <property name="mappings">
+   <!--
+   This Propertys are use full incase of ParameterizableViewController 
+   <props>
+      <prop key="/about.action">viewAboutController</prop>
+      <prop key="/contact.action">viewContactController</prop>
+   </props> -->
+   <!-- This is usefull to configure multiple requests to controller -->
+   <props>
+      <prop key="/about-us.action">commonController</prop>
+      <prop key="/contact-us.action">commonController</prop>
+   </props>
+ </property>
+</bean>
+
+<!-- Controller Configuration 
+This is one way of configuration if you have multiple controllers we can write all those 
+in one shot by using below UrlFileNameViewController
+
+<bean id="viewAboutController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+ <property name="viewName" value="about-us"></property>
+</bean>
+<bean id="viewContactController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+ <property name="viewName" value="contact-us"></property>
+</bean>
+-->
+
+<!-- UrlFileNameViewController -->
+<bean id="commonController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"></bean>
+<!-- View Resolvers Configuration -->	
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ <property name="prefix" value="/WEB-INF/jsps/"></property>
+ <property name="suffix" value=".jsp"></property>
+</bean>
+</beans>
