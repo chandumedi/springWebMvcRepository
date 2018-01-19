@@ -30,6 +30,7 @@ public class AddProductsSimpleFormController extends SimpleFormController {
 		   System.out.println("inside for each loop");
 		   System.out.println(objectError.getDefaultMessage());
 	   }
+	   System.out.println("with errors");
 		return mav;
 	}
 }

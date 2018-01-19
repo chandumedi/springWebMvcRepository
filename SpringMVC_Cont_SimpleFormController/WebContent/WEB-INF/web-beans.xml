@@ -23,8 +23,8 @@
 </bean>
 
 <!-- Configuring ResourceBundles for error properties -->
-<bean id="resourceBundle" class="org.springframework.context.support.ResourceBundleMessageSource">
-  <property name="basename" value="error"></property>
+<bean id="resourceBundle" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+  <property name="basename" value="classpath:message"></property>
 </bean>
 
 <!--Configuring Validators  -->
