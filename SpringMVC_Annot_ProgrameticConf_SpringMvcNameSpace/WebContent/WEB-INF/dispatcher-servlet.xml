@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!-- Here we have to write more configuration information to dispaly single jsp page 
+       If you configure it normally we need to write more configuration.in order to avoid this problem 
+       spring people provided spring mvc configuration approach
+       so you no need to create every thing as bean. for this you need to take the spring mvc name space
+   -->
+   
+   <!-- This is the Controller comming from name space if you dont have to perform any thinfg inside controller just returning the logical view name
+   go for this name space this will use Parameterized View Controller inside of it here we no need to write any Handler Mappings also
+   But if you want to configure custom controllers you have to go for normal approach
+    -->
+ <mvc:view-controller path="/home.htm"  view-name="home"/>
+ 
+ <!-- This is View-Resolver comming from Spring mvc name space insted of  writing normal way like configuring as bean they it self provided 
+        Some prefix and suffix attributes if you want to configure your own resolvers you can also configure inside of it like normal way
+ -->
+<mvc:view-resolvers>
+   <mvc:jsp prefix="/WEB-INF/jsps/"  suffix=".jsp"/>
+</mvc:view-resolvers>
+
+<!-- This is Interceptors name space comming from mvc name space this can be used to apply the pre and post processing logic to a controllerr based on the url
+earlier we used to apply at HandlerMapping level means if we want to apply some common logic for multiple controllers we can apply at HandlerMapping level
+and another way of appying is for particular url also you can apply. in the absence of Handler Mappings here we don't have any Handler Mappings so we can bind it 
+to a Particular Url Mapping or else group of Handler Mappings using Path Attribute inside mvc:mapping tag and we have to place our custom handler inceptor 
+information inside of it by configuring it as bean
+  -->
+<mvc:interceptors>
+   <mvc:interceptor>
+     <mvc:mapping path="/home.htm" />
+     <bean id="homeHandlerInterceptor" class="com.programetic.springmvcnamespace.interceptor.HomeHandlerInterceptor"></bean>
+   </mvc:interceptor>
+</mvc:interceptors>
+</beans>
