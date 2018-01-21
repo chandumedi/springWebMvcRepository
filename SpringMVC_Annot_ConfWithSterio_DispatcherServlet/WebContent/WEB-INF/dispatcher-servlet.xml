@@ -2,6 +2,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   <!-- Configuring Handler Mapping -->
+   <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+      <property name="mappings">
+         <props>
+           <prop key="/index.htm">parameterizedController</prop>
+         </props>
+      </property>
+   </bean>
 
-
+  <!-- Configuring Controller -->
+  <bean id="parameterizedController"  class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+     <property name="viewName"  value="index"></property>
+   </bean>
+   
+   <!-- Configuring ViewResolver -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     <property name="prefix"  value="/WEB-INF/jsp/"></property>
+     <property name="suffix"  value=".jsp"></property>
+   </bean>
 </beans>
