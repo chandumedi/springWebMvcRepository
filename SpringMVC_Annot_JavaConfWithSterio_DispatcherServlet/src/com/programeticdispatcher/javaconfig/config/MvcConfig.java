@@ -20,6 +20,10 @@ public class MvcConfig {
 	   System.out.println("inside MvcConfig class constructor");
    }
    
+   /*We are configuring HandlerMapping here for this we are setting property 
+    * as incoming url and value as id of the controller by default it will take 
+    * method name as id insted of that you can override by provideing the 
+    * value in name attribute in Bean tag that's waht we did in "vac" */
    @Bean
    public HandlerMapping simpleUrlHandlerMapping() {
 	   System.out.println("inside SimpleUrlHandlerMappings method");
