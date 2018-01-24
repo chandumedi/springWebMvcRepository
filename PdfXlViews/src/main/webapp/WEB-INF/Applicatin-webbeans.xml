@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/homepage.action">homepage</prop>
+				<prop key="/downloadfile.action">viewcontroller</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="homepage"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="Homepage"></property>
+	</bean>
+	
+	<bean id="viewcontroller" class="com.apps.controller.ViewController"></bean>
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
+	
+	<bean id="xlsview" class="com.apps.viewClasses.XlsView"></bean>
+	
+	<bean id="pdfview" class="com.apps.viewClasses.PdfView"></bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>
